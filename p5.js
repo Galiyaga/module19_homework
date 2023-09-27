@@ -7,12 +7,12 @@ class Device {
 
     turnOn() {
         this.isOn = true;
-        console.log(this.name + ' is turned on.');
+        console.log(`${this.name} is turned on.`);
     }
 
     turnOff() {
         this.isOn = false;
-        console.log(this.name + ' is turned off.');
+        console.log(`${this.name} is turned off.`);
     }
 }
 
@@ -23,17 +23,15 @@ class Lamp extends Device {
     }
 
     makeDimmer() {
-        if (this.brightness > 0) {
-            this.brightness -= 10;
-            return "Brightness: " + this.brightness
-        }
+        this.adjustBrightness(-10);
     }
 
     makeBrighter() {
-        if (this.brightness < 100) {
-            this.brightness += 10;
-            return "Brightness: " + this.brightness
-        }
+        this.adjustBrightness(10);
+    }
+
+    adjustBrightness(delta) {
+        this.brightness = Math.min(Math.max(this.brightness + delta, 0), 100);
     }
 }
 
